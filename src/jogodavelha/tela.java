@@ -1,4 +1,4 @@
-package jogo.da.velha;
+package jogodavelha;
 
 /**
  *
