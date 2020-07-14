@@ -2,7 +2,7 @@ package jogodavelha;
 
 /**
  *
- * @author iivan
+ * @author iivnn
  */
 public class tela extends javax.swing.JFrame {
 
