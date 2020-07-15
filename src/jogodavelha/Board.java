@@ -36,7 +36,9 @@ public class Board {
     public void move(int x, int y){
         if(this.board[x][y]==0){
             this.board[x][y] = this.value;
-            this.value *= -1;}
+            this.value *= -1;
+            this.rounds += 1;
+        }
     }
     
     public void sumAll(){

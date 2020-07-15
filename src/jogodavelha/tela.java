@@ -11,7 +11,7 @@ public class tela extends javax.swing.JFrame {
      */
     
     Board tela = new Board();
-    int ganhador = 0;
+    int[] v = new int[2];
     
     public void updateSum(){
         sum0.setText(Integer.toString(tela.getSum()[0]));
@@ -22,10 +22,29 @@ public class tela extends javax.swing.JFrame {
         sum5.setText(Integer.toString(tela.getSum()[5]));
         sum6.setText(Integer.toString(tela.getSum()[6]));
         sum7.setText(Integer.toString(tela.getSum()[7]));
-        
-        
     }
     
+    public void updateBoard(){
+        casa0.setText(Integer.toString(this.tela.getBoard()[0][0]));
+        casa1.setText(Integer.toString(this.tela.getBoard()[0][1]));
+        casa2.setText(Integer.toString(this.tela.getBoard()[0][2]));
+        casa3.setText(Integer.toString(this.tela.getBoard()[1][0]));
+        casa4.setText(Integer.toString(this.tela.getBoard()[1][1]));
+        casa5.setText(Integer.toString(this.tela.getBoard()[1][2]));
+        casa6.setText(Integer.toString(this.tela.getBoard()[2][0]));
+        casa7.setText(Integer.toString(this.tela.getBoard()[2][1]));
+        casa8.setText(Integer.toString(this.tela.getBoard()[2][2]));
+    }
+    
+    public void updateWinner(){
+        winner.setText(Integer.toString(this.tela.findWinner()));
+    }
+    
+    
+    public void botTurn(){
+        v = BoardBot.boardBotMove(tela);
+        this.tela.move(v[0], v[1]);
+    }
     
     public tela() {
         initComponents();
@@ -59,6 +78,7 @@ public class tela extends javax.swing.JFrame {
         sum5 = new javax.swing.JLabel();
         sum6 = new javax.swing.JLabel();
         sum7 = new javax.swing.JLabel();
+        winner = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -176,13 +196,19 @@ public class tela extends javax.swing.JFrame {
         sum7.setForeground(new java.awt.Color(153, 0, 51));
         sum7.setText("0");
 
+        winner.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        winner.setForeground(new java.awt.Color(0, 153, 0));
+        winner.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(sum7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(winner, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sum7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -222,7 +248,9 @@ public class tela extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(9, 9, 9)
+                .addComponent(winner, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(casa0, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(casa1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,91 +284,102 @@ public class tela extends javax.swing.JFrame {
     private void casa0MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa0MousePressed
         // TODO add your handling code here:
         this.tela.move(0,0);
-        casa0.setText(Integer.toString(this.tela.getBoard()[0][0]));
         this.tela.sumAll();
-        this.tela.findWinner();
+        botTurn();
+        this.tela.sumAll();
         updateSum();
-        ganhador = this.tela.findWinner();
+        updateBoard();
+        updateWinner();
+        
     }//GEN-LAST:event_casa0MousePressed
 
     private void casa1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa1MousePressed
         // TODO add your handling code here:
         this.tela.move(0,1);
-        casa1.setText(Integer.toString(this.tela.getBoard()[0][1]));
         this.tela.sumAll();
-        this.tela.findWinner();
+        botTurn();
+        this.tela.sumAll();
         updateSum();
-        ganhador = this.tela.findWinner();
+        updateBoard();
+        updateWinner();
+        
     }//GEN-LAST:event_casa1MousePressed
 
     private void casa2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa2MousePressed
         // TODO add your handling code here:
         this.tela.move(0,2);
-        casa2.setText(Integer.toString(this.tela.getBoard()[0][2]));
         this.tela.sumAll();
-        this.tela.findWinner();
+        botTurn();
+        this.tela.sumAll();
         updateSum();
-        ganhador = this.tela.findWinner();
+        updateBoard();
+        updateWinner();
     }//GEN-LAST:event_casa2MousePressed
 
     private void casa3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa3MousePressed
         // TODO add your handling code here:
         this.tela.move(1,0);
-        casa3.setText(Integer.toString(this.tela.getBoard()[1][0]));
         this.tela.sumAll();
-        this.tela.findWinner();
+        botTurn();
+        this.tela.sumAll();
         updateSum();
-        ganhador = this.tela.findWinner();
+        updateBoard();
+        updateWinner();
     }//GEN-LAST:event_casa3MousePressed
 
     private void casa4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa4MousePressed
         // TODO add your handling code here:
         this.tela.move(1,1);
-        casa4.setText(Integer.toString(this.tela.getBoard()[1][1]));
         this.tela.sumAll();
-        this.tela.findWinner();
+        botTurn();
+        this.tela.sumAll();
         updateSum();
-        ganhador = this.tela.findWinner();
+        updateBoard();
+        updateWinner();
     }//GEN-LAST:event_casa4MousePressed
 
     private void casa5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa5MousePressed
         // TODO add your handling code here:
         this.tela.move(1,2);
-        casa5.setText(Integer.toString(this.tela.getBoard()[1][2]));
         this.tela.sumAll();
-        this.tela.findWinner();
+        botTurn();
+        this.tela.sumAll();
         updateSum();
-        ganhador = this.tela.findWinner();
+        updateBoard();
+        updateWinner();
     }//GEN-LAST:event_casa5MousePressed
 
     private void casa6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa6MousePressed
         // TODO add your handling code here:
         this.tela.move(2,0);
-        casa6.setText(Integer.toString(this.tela.getBoard()[2][0]));
         this.tela.sumAll();
-        this.tela.findWinner();
+        botTurn();
+        this.tela.sumAll();
         updateSum();
-        ganhador = this.tela.findWinner();
+        updateBoard();
+        updateWinner();
     }//GEN-LAST:event_casa6MousePressed
 
     private void casa7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa7MousePressed
         // TODO add your handling code here:
         this.tela.move(2,1);
-        casa7.setText(Integer.toString(this.tela.getBoard()[2][1]));
         this.tela.sumAll();
-        this.tela.findWinner();
+        botTurn();
+        this.tela.sumAll();
         updateSum();
-        ganhador = this.tela.findWinner();
+        updateBoard();
+        updateWinner();
     }//GEN-LAST:event_casa7MousePressed
 
     private void casa8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa8MousePressed
         // TODO add your handling code here:
         this.tela.move(2,2);
-        casa8.setText(Integer.toString(this.tela.getBoard()[2][2]));
         this.tela.sumAll();
-        this.tela.findWinner();
+        botTurn();
+        this.tela.sumAll();
         updateSum();
-        ganhador = this.tela.findWinner();
+        updateBoard();
+        updateWinner();
     }//GEN-LAST:event_casa8MousePressed
 
     /**
@@ -396,5 +435,6 @@ public class tela extends javax.swing.JFrame {
     private javax.swing.JLabel sum5;
     private javax.swing.JLabel sum6;
     private javax.swing.JLabel sum7;
+    private javax.swing.JLabel winner;
     // End of variables declaration//GEN-END:variables
 }
