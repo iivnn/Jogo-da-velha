@@ -9,11 +9,22 @@ public class Board {
     private int sum[];
     private int value;
     private int rounds;
+    
 
-    public Board() {
+    public Board(boolean cross) {
         this.board = new int[3][3];
         this.sum = new int[8];
-        this.value = 1;
+        this.rounds = 0;
+        if(cross){
+            this.value = 1;
+        }else{
+            this.value = -1;
+        }
+    }
+    
+    public void reset(){
+        this.board = new int[3][3];
+        this.sum = new int[8];
         this.rounds = 0;
     }
 
