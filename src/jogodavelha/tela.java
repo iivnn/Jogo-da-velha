@@ -1,5 +1,7 @@
 package jogodavelha;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author iivnn
@@ -37,13 +39,31 @@ public class tela extends javax.swing.JFrame {
     }
     
     public void updateWinner(){
-        winner.setText(Integer.toString(this.tela.findWinner()));
+        if(this.tela.findWinner()== 2){
+            JOptionPane.showMessageDialog(null,"O jogo deu Velha");
+            tela = new Board();
+            updateBoard();
+            updateSum();
+        }else if(this.tela.findWinner()==-1){
+            JOptionPane.showMessageDialog(null,"O jogador -1 venceu!");
+            tela = new Board();
+            updateBoard();
+            updateSum();
+        }else if(this.tela.findWinner()== 1){
+            JOptionPane.showMessageDialog(null,"O jogador 1 venceu!");
+            tela = new Board();
+            updateBoard();
+            updateSum();
+        }
     }
     
     
     public void botTurn(){
-        v = BoardBot.boardBotMove(tela);
-        this.tela.move(v[0], v[1]);
+        if(this.tela.getRounds() != 9){
+            v = BoardBot.boardBotMove(tela);
+            this.tela.move(v[0], v[1]);
+        }
+        
     }
     
     public tela() {
@@ -283,103 +303,128 @@ public class tela extends javax.swing.JFrame {
 
     private void casa0MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa0MousePressed
         // TODO add your handling code here:
-        this.tela.move(0,0);
-        this.tela.sumAll();
-        botTurn();
-        this.tela.sumAll();
-        updateSum();
-        updateBoard();
-        updateWinner();
-        
+        if(tela.getBoard()[0][0] == 0){
+            this.tela.move(0,0);
+            this.tela.sumAll();
+            updateWinner();
+            botTurn();
+            this.tela.sumAll();
+            updateSum();
+            updateBoard();
+            updateWinner(); 
+        }    
     }//GEN-LAST:event_casa0MousePressed
 
     private void casa1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa1MousePressed
         // TODO add your handling code here:
-        this.tela.move(0,1);
-        this.tela.sumAll();
-        botTurn();
-        this.tela.sumAll();
-        updateSum();
-        updateBoard();
-        updateWinner();
-        
+        if(tela.getBoard()[0][1] == 0){
+            this.tela.move(0,1);
+            this.tela.sumAll();
+            updateWinner();
+            botTurn();
+            this.tela.sumAll();
+            updateSum();
+            updateBoard();
+            updateWinner();  
+        }  
     }//GEN-LAST:event_casa1MousePressed
 
     private void casa2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa2MousePressed
         // TODO add your handling code here:
-        this.tela.move(0,2);
-        this.tela.sumAll();
-        botTurn();
-        this.tela.sumAll();
-        updateSum();
-        updateBoard();
-        updateWinner();
+        if(tela.getBoard()[0][2] == 0){
+            this.tela.move(0,2);
+            this.tela.sumAll();
+            updateWinner();
+            botTurn();
+            this.tela.sumAll();
+            updateSum();
+            updateBoard();
+            updateWinner();  
+        }   
     }//GEN-LAST:event_casa2MousePressed
 
     private void casa3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa3MousePressed
         // TODO add your handling code here:
-        this.tela.move(1,0);
-        this.tela.sumAll();
-        botTurn();
-        this.tela.sumAll();
-        updateSum();
-        updateBoard();
-        updateWinner();
+        if(tela.getBoard()[1][0] == 0){
+            this.tela.move(1,0);
+            this.tela.sumAll();
+            updateWinner();
+            botTurn();
+            this.tela.sumAll();
+            updateSum();
+            updateBoard();
+            updateWinner();  
+        }
     }//GEN-LAST:event_casa3MousePressed
 
     private void casa4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa4MousePressed
         // TODO add your handling code here:
-        this.tela.move(1,1);
-        this.tela.sumAll();
-        botTurn();
-        this.tela.sumAll();
-        updateSum();
-        updateBoard();
-        updateWinner();
+        if(tela.getBoard()[1][1] == 0){
+            this.tela.move(1,1);
+            this.tela.sumAll();
+            updateWinner();
+            botTurn();
+            this.tela.sumAll();
+            updateSum();
+            updateBoard();
+            updateWinner(); 
+        }    
     }//GEN-LAST:event_casa4MousePressed
 
     private void casa5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa5MousePressed
         // TODO add your handling code here:
-        this.tela.move(1,2);
-        this.tela.sumAll();
-        botTurn();
-        this.tela.sumAll();
-        updateSum();
-        updateBoard();
-        updateWinner();
+        if(tela.getBoard()[1][2] == 0){
+            this.tela.move(1,2);
+            this.tela.sumAll();
+            updateWinner();
+            botTurn();
+            this.tela.sumAll();
+            updateSum();
+            updateBoard();
+            updateWinner();  
+        }
     }//GEN-LAST:event_casa5MousePressed
 
     private void casa6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa6MousePressed
         // TODO add your handling code here:
-        this.tela.move(2,0);
-        this.tela.sumAll();
-        botTurn();
-        this.tela.sumAll();
-        updateSum();
-        updateBoard();
-        updateWinner();
+        if(tela.getBoard()[2][0] == 0){
+            this.tela.move(2,0);
+            this.tela.sumAll();
+            updateWinner();
+            botTurn();
+            this.tela.sumAll();
+            updateSum();
+            updateBoard();
+            updateWinner(); 
+        }
     }//GEN-LAST:event_casa6MousePressed
 
     private void casa7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa7MousePressed
         // TODO add your handling code here:
-        this.tela.move(2,1);
-        this.tela.sumAll();
-        botTurn();
-        this.tela.sumAll();
-        updateSum();
-        updateBoard();
-        updateWinner();
+        if(tela.getBoard()[2][1] == 0){
+            this.tela.move(2,1);
+            this.tela.sumAll();
+            updateWinner();
+            botTurn();
+            this.tela.sumAll();
+            updateSum();
+            updateBoard();
+            updateWinner(); 
+        }
     }//GEN-LAST:event_casa7MousePressed
 
     private void casa8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casa8MousePressed
         // TODO add your handling code here:
-        this.tela.move(2,2);
-        this.tela.sumAll();
-        botTurn();
-        this.tela.sumAll();
-        updateSum();
-        updateBoard();
-        updateWinner();
+        if(tela.getBoard()[2][2] == 0){
+            this.tela.move(2,2);
+            this.tela.sumAll();
+            updateWinner();
+            botTurn();
+            this.tela.sumAll();
+            updateSum();
+            updateBoard();
+            updateWinner();  
+        } 
     }//GEN-LAST:event_casa8MousePressed
 
     /**

@@ -7,45 +7,38 @@ public class BoardBot {
     
     public static int[] boardBotMove(Board b){
         int[] v = new int[2];
-        switch (b.getRounds()) {
-            case 1:
+        if(b.getRounds()==0){
+            v[0] = 1;
+            v[1] = 1;
+            return v;
+        }else if(b.getRounds()==1){
+            if(b.getBoard()[1][1] == 0){
                 v[0] = 1;
                 v[1] = 1;
                 return v;
-            case 2:
-                if(b.getBoard()[1][1] == 0){
-                    v[0] = 1;
-                    v[1] = 1;
-                    return v;
-                }else{
-                    return botMoveOnTheCorner(b);
-                    }
-            case 3:
+            }else{
                 return botMoveOnTheCorner(b);
-            case 4:
+            }
+        }else if(b.getRounds() == 2){
+            return botMoveOnTheCorner(b);
+        }else{
+            v = botWin(b);
+            if(v[0] != -1 && v[1] != -1){
+                return v;
+            }else{
                 v = botBlock(b);
                 if(v[0] != -1 && v[1] != -1){
                     return v;
                 }else{
-                    return botMoveRandom(b);
-                }
-            default:
-                v = botWin(b);
-                if(v[0] != -1 && v[1] != -1){
+                    v = botMoveRandom(b);
                     return v;
-                }else{
-                    v = botBlock(b);
-                    if(v[0] != -1 && v[1] != -1){
-                        return v;
-                    }else{
-                        v = botMoveSmart(b);
-                        return v;
-                    }
                 }
-                
-                
-        }//fim switch
+            }
+        }
+            
     }
+            
+    
     
     
     private static  int[] botBlock(Board b){
@@ -107,7 +100,7 @@ public class BoardBot {
                             return v;}
                     case 4:
                         if(b.getBoard()[0][1] == 0){
-                            v[0] = 1;
+                            v[0] = 0;
                             v[1] = 1;
                             return v;
                         }else if(b.getBoard()[1][1] == 0){
@@ -132,17 +125,17 @@ public class BoardBot {
                             v[1] = 2;
                             return v;}
                     case 6:
-                        if(b.getBoard()[0][1] == 0){
+                        if(b.getBoard()[1][1] == 0){
                             v[0] = 1;
                             v[1] = 1;
                             return v;
-                        }else if(b.getBoard()[1][1] == 0){
-                            v[0] = 1;
-                            v[1] = 1;
+                        }else if(b.getBoard()[0][0] == 0){
+                            v[0] = 0;
+                            v[1] = 0;
                             return v;
-                        }else if(b.getBoard()[2][1] == 0){
+                        }else if(b.getBoard()[2][2] == 0){
                             v[0] = 2;
-                            v[1] = 1;
+                            v[1] = 2;
                             return v;}
                     case 7:
                         if(b.getBoard()[2][0] == 0){
@@ -157,6 +150,10 @@ public class BoardBot {
                             v[0] = 0;
                             v[1] = 2;
                             return v;}
+                    default:
+                        v[0] = -1;
+                        v[1] = -1;
+                        return v;
                 }//fim switch
             }
         }//fim do laço
@@ -225,7 +222,7 @@ public class BoardBot {
                             return v;}
                     case 4:
                         if(b.getBoard()[0][1] == 0){
-                            v[0] = 1;
+                            v[0] = 0;
                             v[1] = 1;
                             return v;
                         }else if(b.getBoard()[1][1] == 0){
@@ -250,17 +247,17 @@ public class BoardBot {
                             v[1] = 2;
                             return v;}
                     case 6:
-                        if(b.getBoard()[0][1] == 0){
-                            v[0] = 1;
-                            v[1] = 1;
+                        if(b.getBoard()[0][0] == 0){
+                            v[0] = 0;
+                            v[1] = 0;
                             return v;
                         }else if(b.getBoard()[1][1] == 0){
                             v[0] = 1;
                             v[1] = 1;
                             return v;
-                        }else if(b.getBoard()[2][1] == 0){
+                        }else if(b.getBoard()[2][2] == 0){
                             v[0] = 2;
-                            v[1] = 1;
+                            v[1] = 2;
                             return v;}
                     case 7:
                         if(b.getBoard()[2][0] == 0){
@@ -275,6 +272,11 @@ public class BoardBot {
                             v[0] = 0;
                             v[1] = 2;
                             return v;}
+                    default:
+                        v[0] = -1;
+                        v[1] = -1;
+                        return v;
+                        
                 }//fim switch
             }
         }//fim do laço
@@ -313,77 +315,5 @@ public class BoardBot {
         }
         
     }
-    
-    
-    private static  int[] botMoveSmart(Board b){
-        int[] v = new int[2];
-        
-        Board p = b;
-        int sum = sumAll(b);
-        if(b.getValue()>0){
-            for(int x=0;x<3;x++){
-                for (int y=0; y<3;y++){
-                    if(p.getBoard()[x][y] == 0){
-                        p = pBoard(b, x, y);
-                        if(sumAll(p)>sum){
-                            sum = sumAll(p);
-                            v[0] = x;
-                            v[1] = y;
-                            p = b;
-                        }
-                        p = pBoard(b, y ,x);
-                        if(sumAll(p)>sum){
-                            sum = sumAll(p);
-                            v[0] = y;
-                            v[1] = x;
-                            p = b;
-                        }
-                    }
-                    p = b;
-                }
-            }
-        }else if(b.getValue()<0){
-            for(int x=0;x<3;x++){
-                for (int y=0; y<3;y++){
-                if(p.getBoard()[x][y] == 0){
-                        p = pBoard(b, x, y);
-                        if(sumAll(p)<sum){
-                            sum = sumAll(p);
-                            v[0] = x;
-                            v[1] = y;
-                            p = b;
-                        }
-                        p = pBoard(b, y ,x);
-                        if(sumAll(p)<sum){
-                            sum = sumAll(p);
-                            v[0] = y;
-                            v[1] = x;
-                            p = b;
-                        }
-                        p = b;
-                    }
-                
-                }
-            }
-            
-        }
-        return v;
-    }
-    
-    
-    private static  int sumAll(Board b){
-        int s = 0;
-        for(int z=0;z<8;z++){
-           s += b.getSum()[z];
-        }
-        return s;
-        
-    }
-    
-    private  static Board pBoard(Board b,int x, int y){
-        Board p = b;
-        p.move(x, y);
-        return p;
-    }
-    
+   
 }
