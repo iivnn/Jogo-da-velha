@@ -1,5 +1,7 @@
 # Jogo-da-velha
 
+<img src="https://github.com/iivnn/simple_snake_console_game/blob/master/image.png?raw=true">
+
 Este projeto é um jogo da velha simples, ele foi feito com a IDE netbeans, linguagem java e para interface 
 gráfica utilizo o pacote swing. Neste projeto busco aplicar meus conhecimentos em algoritmo, matriz e orientação 
 a objeto. A interface gráfica será simples pois esse não é o meu foco.
