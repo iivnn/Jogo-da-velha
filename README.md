@@ -1,6 +1,6 @@
 # Jogo-da-velha
 
-<img src="https://github.com/iivnn/Jogo-da-velha/blob/master/tictactoe.png" style="vertical-align:middle>
+<img src="https://github.com/iivnn/Jogo-da-velha/blob/master/tictactoe.png" style="vertical-align:middle">
 
 Este projeto é um jogo da velha simples, ele foi feito com a IDE netbeans, linguagem java e para interface 
 gráfica utilizo o pacote swing. Neste projeto busco aplicar meus conhecimentos em algoritmo, matriz e orientação 
